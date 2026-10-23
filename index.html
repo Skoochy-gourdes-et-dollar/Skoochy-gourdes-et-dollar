@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Skoochy Gourdes et Dollar</title>
+<style>
+:root{--bg:#101827;--panel:#192438;--gold:#f2c35b;--text:#f4f7fc;--muted:#b6c1d2;--green:#42d6a0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.6}
+header{padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid #344157}
+.brand{font-size:20px;font-weight:800;color:var(--gold)}
+nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+a{color:var(--text);text-decoration:none}
+a:hover{color:var(--gold)}
+button,select,input{font:inherit;padding:11px;border-radius:9px;border:1px solid #46536b}
+button{cursor:pointer;background:var(--gold);color:#182033;font-weight:bold}
+input,select{width:100%;background:#101827;color:white}
+main{max-width:1100px;margin:auto;padding:24px 16px}
+.hero{padding:45px 25px;background:linear-gradient(130deg,#233954,#172238);border-radius:20px}
+h1{font-size:clamp(30px,6vw,48px);line-height:1.15}
+h2{color:var(--gold)}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--panel);padding:20px;border:1px solid #344157;border-radius:15px;margin:16px 0}
+.field{margin:12px 0}
+.field label{display:block;margin-bottom:6px}
+.result{font-size:23px;color:var(--green);font-weight:bold;overflow-wrap:anywhere}
+.pill{display:inline-block;padding:5px 10px;background:#344157;border-radius:20px;color:var(--gold);font-size:13px}
+.notice{border-left:4px solid var(--gold);padding:12px;background:#222d40}
+footer{text-align:center;padding:28px;color:var(--muted)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">◆ SKOOCHY</div>
+  <nav>
+    <a href="#home" data-t="home">Akèy</a>
+    <a href="#calculator" data-t="calc">Kalkilatris</a>
+    <a href="#demo" data-t="demo">Demo</a>
+    <a href="#learn" data-t="learn">Fòmasyon</a>
+    <select id="language" aria-label="Chwazi lang">
+      <option value="ht">Kreyòl</option>
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <span class="pill">LEARN • CALCULATE • PRACTICE • PROTECT</span>
+  <h1 data-t="welcome">Aprann finans. Kalkile pi byen. Pratike san risk reyèl.</h1>
+  <p class="muted" data-t="intro">Dekouvri kripto, Forex, CFD ak P2P avèk zouti kalkil ak lajan vityèl.</p>
+  <a href="#calculator"><button data-t="start">Kòmanse aprann</button></a>
+  <p class="muted" data-t="disclaimer">Platfòm edikatif. Demo a pa sèvi ak lajan reyèl.</p>
+</section>
+
+<section id="calculator">
+<h2 data-t="calcTitle">Kalkilatris goud ak dola</h2>
+<div class="card">
+  <p class="muted" data-t="rateHelp">Antre to echanj la. Egzanp lan se yon valè demonstrasyon, se pa to mache an dirèk.</p>
+  <div class="grid">
+    <div class="field">
+      <label for="rate" data-t="rate">1 USD egal konbyen HTG?</label>
+      <input id="rate" type="number" min="0.01" step="any" value="130">
+    </div>
+    <div class="field">
+      <label for="amount" data-t="amount">Montan</label>
+      <input id="amount" type="number" min="0" step="any" value="10">
+    </div>
+    <div class="field">
+      <label for="direction" data-t="direction">Konvèti soti</label>
+      <select id="direction">
+        <option value="usd">USD → HTG</option>
+        <option value="htg">HTG → USD</option>
+      </select>
+    </div>
+  </div>
+  <button id="convert" data-t="calculate">Kalkile</button>
+  <p class="result" id="conversion" aria-live="polite">1,300.00 HTG</p>
+  <p class="muted" data-t="rateWarning">Verifye to aktyèl la anvan ou pran desizyon finansye.</p>
+</div>
+
+<div class="card">
+  <h3 data-t="cryptoTitle">Kalkilatris kripto</h3>
+  <div class="field">
+    <label for="coin" data-t="coin">Pri yon inite kripto an USD</label>
+    <input id="coin" type="number" min="0" step="any" value="100">
+  </div>
+  <div class="field">
+    <label for="quantity" data-t="quantity">Kantite inite</label>
+    <input id="quantity" type="number" min="0" step="any" value="0.1">
+  </div>
+  <button id="cryptoCalculate" data-t="calculate">Kalkile</button>
+  <p class="result" id="cryptoResult" aria-live="polite">10.00 USD</p>
+  <p id="cryptoHTG" class="muted">1,300.00 HTG</p>
+  <p class="muted" data-t="cryptoWarning">Pri a se sa ou antre a, li pa yon pri kripto an dirèk.</p>
+</div>
+</section>
+
+<section id="demo">
+<h2 data-t="demoTitle">Laboratwa demo vityèl</h2>
+<div class="card">
+  <span class="pill" data-t="virtual">LAJAN VITYÈL SÈLMAN</span>
+  <p data-t="demoInfo">Chwazi yon balans pou aprann jere yon bidjè simile. Pa gen depo oswa retrè reyèl.</p>
+  <div class="field">
+    <label for="demoCurrency" data-t="currency">Lajan demo</label>
+    <select id="demoCurrency">
+      <option value="htg">HTG vityèl</option>
+      <option value="usd">USD vityèl</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="startingBalance" data-t="balance">Balans inisyal</label>
+    <select id="startingBalance">
+      <option value="1500">1,500 HTG</option>
+      <option value="10">10 USD</option>
+    </select>
+  </div>
+  <p><span data-t="balanceLabel">Balans aktyèl</span>:</p>
+  <p class="result" id="balance">1,500.00 HTG</p>
+  <div class="field">
+    <label for="changeAmount" data-t="change">Montan pou simile</label>
+    <input id="changeAmount" type="number" min="0.01" step="any" value="100">
+  </div>
+  <div class="grid">
+    <button id="gain" data-t="gain">Simile yon pwofi</button>
+    <button id="loss" data-t="loss">Simile yon pèt</button>
+    <button id="reset" data-t="reset">Rekòmanse demo</button>
+  </div>
+  <p id="demoMessage" class="muted" aria-live="polite"></p>
+  <p class="muted" data-t="demoWarning">Sa se yon egzèsis matematik, se pa yon tranzaksyon sou mache.</p>
+</div>
+
+<div class="card">
+<h3 data-t="riskTitle">Kalkilatris risk</h3>
+<div class="field">
+<label for="capital" data-t="capital">Kapital vityèl</label>
+<input id="capital" type="number" min="0.01" value="1500">
+</div>
+<div class="field">
+<label for="riskPercent" data-t="riskPercent">Risk teyorik (%)</label>
+<input id="riskPercent" type="number" min="0" max="100" step="0.1" value="1">
+</div>
+<button id="riskCalculate" data-t="calculate">Kalkile</button>
+<p class="result" id="riskResult" aria-live="polite">15.00 HTG</p>
+<p class="muted" data-t="riskHelp">Egzanp sa a montre kantite kapital ki ta ekspoze dapre pousantaj la. Li pa garanti limit pèt reyèl la.</p>
+</div>
+</section>
+
+<section id="learn">
+<h2 data-t="learnTitle">Sant fòmasyon</h2>
+<div class="grid">
+ <article class="card">
+  <h3>₿ Crypto</h3>
+  <p data-t="cryptoLesson">Aprann sou volatilite, pri, frè rezo, bous dijital ak pwoteksyon kle prive yo.</p>
+ </article>
+ <article class="card">
+  <h3>Forex & Pips</h3>
+  <p data-t="forexLesson">Yon pip se yon inite pou mezire chanjman pri. Valè li depann de pè lajan an, volim ak lajan kont lan.</p>
+ </article>
+ <article class="card">
+  <h3>CFD & Leverage</h3>
+  <p data-t="cfdLesson">CFD pèmèt spekile sou chanjman pri san posede byen an. Leverage ogmante ekspozisyon ak risk pèt.</p>
+ </article>
+ <article class="card">
+  <h3>P2P</h3>
+  <p data-t="p2pLesson">Kalkile diferans ant pri acha ak pri vant, frè, ak kantite lajan ou resevwa. Verifye peman an nan kont ou.</p>
+ </article>
+ <article class="card">
+  <h3>🔐 2FA & Authenticator</h3>
+  <p data-t="securityLesson">Sèvi ak yon modpas inik, aktive 2FA, konsève kòd rekiperasyon yo an sekirite, epi pa pataje kòd verifikasyon.</p>
+ </article>
+ <article class="card">
+  <h3 data-t="scamTitle">Evite magouy</h3>
+  <p data-t="scamLesson">Pa fè konfyans pwomès pwofi garanti. Verifye domèn sit la, pa pataje kle prive, epi pa enstale aplikasyon yo voye ba ou nan mesaj sispèk.</p>
+ </article>
+</div>
+<div class="notice">
+<strong data-t="important">Enpòtan:</strong>
+<span data-t="educationNotice">Fòmasyon sa a pa konsèy finansye. Kripto, Forex ak CFD ka lakòz gwo pèt. Demo pa prevwa rezilta nan mache reyèl.</span>
+</div>
+</section>
+
+<section id="access">
+<h2 data-t="accessTitle">Aksè ak enskripsyon</h2>
+<div class="card">
+<p data-t="accessInfo">Objektif plan an se yon peman aksè yon sèl fwa: 100 HTG pa NatCash oswa MonCash, oubyen 1 USDT. Wise ka disponib pou peman an USD selon kondisyon sèvis la.</p>
+<p data-t="accessWarning">Peman, enskripsyon ak KYC pa aktive nan vèsyon demonstrasyon sa a. Pa voye lajan oswa pyès idantite sou paj sa a.</p>
+<p class="muted" data-t="privacy">Nou dwe itilize sèvis sekirize pou kont, peman ak verifikasyon idantite, avèk minimòm done pèsonèl ki nesesè.</p>
+</div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 Skoochy Gourdes et Dollar</p>
+<p data-t="footer">Aprann. Kalkile. Pratike. Pwoteje tèt ou.</p>
+</footer>
+
+<script>
+const translations = {
+ht:{
+home:"Akèy",calc:"Kalkilatris",demo:"Demo",learn:"Fòmasyon",
+welcome:"Aprann finans. Kalkile pi byen. Pratike san risk reyèl.",
+intro:"Dekouvri kripto, Forex, CFD ak P2P avèk zouti kalkil ak lajan vityèl.",
+start:"Kòmanse aprann",disclaimer:"Platfòm edikatif. Demo a pa sèvi ak lajan reyèl.",
+calcTitle:"Kalkilatris goud ak dola",rateHelp:"Antre to echanj la. Egzanp lan se yon valè demonstrasyon, se pa to mache an dirèk.",
+rate:"1 USD egal konbyen HTG?",amount:"Montan",direction:"Konvèti soti",calculate:"Kalkile",
+rateWarning:"Verifye to aktyèl la anvan ou pran desizyon finansye.",
+cryptoTitle:"Kalkilatris kripto",coin:"Pri yon inite kripto an USD",quantity:"Kantite inite",
+cryptoWarning:"Pri a se sa ou antre a, li pa yon pri kripto an dirèk.",
+demoTitle:"Laboratwa demo vityèl",virtual:"LAJAN VITYÈL SÈLMAN",
+demoInfo:"Chwazi yon balans pou aprann jere yon bidjè simile. Pa gen depo oswa retrè reyèl.",
+currency:"Lajan demo",balance:"Balans inisyal",balanceLabel:"Balans aktyèl",
+change:"Montan pou simile",gain:"Simile yon pwofi",loss:"Simile yon pèt",
+reset:"Rekòmanse demo",demoWarning:"Sa se yon egzèsis matematik, se pa yon tranzaksyon sou mache.",
+riskTitle:"Kalkilatris risk",capital:"Kapital vityèl",riskPercent:"Risk teyorik (%)",
+riskHelp:"Egzanp sa a montre kantite kapital ki ta ekspoze dapre pousantaj la. Li pa garanti limit pèt reyèl la.",
+learnTitle:"Sant fòmasyon",cryptoLesson:"Aprann sou volatilite, pri, frè rezo, bous dijital ak pwoteksyon kle prive yo.",
+forexLesson:"Yon pip se yon inite pou mezire chanjman pri. Valè li depann de pè lajan an, volim ak lajan kont lan.",
+cfdLesson:"CFD pèmèt spekile sou chanjman pri san posede byen an. Leverage ogmante ekspozisyon ak risk pèt.",
+p2pLesson:"Kalkile diferans ant pri acha ak pri vant, frè, ak kantite lajan ou resevwa. Verifye peman an nan kont ou.",
+securityLesson:"Sèvi ak yon modpas inik, aktive 2FA, konsève kòd rekiperasyon yo an sekirite, epi pa pataje kòd verifikasyon.",
+scamTitle:"Evite magouy",scamLesson:"Pa fè konfyans pwomès pwofi garanti. Verifye domèn sit la, pa pataje kle prive, epi pa enstale aplikasyon yo voye ba ou nan mesaj sispèk.",
+important:"Enpòtan:",educationNotice:"Fòmasyon sa a pa konsèy finansye. Kripto, Forex ak CFD ka lakòz gwo pèt. Demo pa prevwa rezilta nan mache reyèl.",
+accessTitle:"Aksè ak enskripsyon",accessInfo:"Objektif plan an se yon peman aksè yon sèl fwa: 100 HTG pa NatCash oswa MonCash, oubyen 1 USDT. Wise ka disponib pou peman an USD selon kondisyon sèvis la.",
+accessWarning:"Peman, enskripsyon ak KYC pa aktive nan vèsyon demonstrasyon sa a. Pa voye lajan oswa pyès idantite sou paj sa a.",
+privacy:"Nou dwe itilize sèvis sekirize pou kont, peman ak verifikasyon idantite, avèk minimòm done pèsonèl ki nesesè.",
+footer:"Aprann. Kalkile. Pratike. Pwoteje tèt ou."
+},
+fr:{
+home:"Accueil",calc:"Calculatrice",demo:"Démo",learn:"Formation",
+welcome:"Apprenez la finance. Calculez mieux. Entraînez-vous sans argent réel.",
+intro:"Découvrez la crypto, le Forex, les CFD et le P2P avec des outils de calcul et un solde virtuel.",
+start:"Commencer",disclaimer:"Plateforme éducative. La démo n'utilise pas d'argent réel.",
+calcTitle:"Calculateur gourdes et dollars",rateHelp:"Saisissez un taux. La valeur proposée est un exemple, pas un cours en direct.",
+rate:"Combien de HTG pour 1 USD ?",amount:"Montant",direction:"Convertir depuis",calculate:"Calculer",
+rateWarning:"Vérifiez le taux actuel avant toute décision financière.",
+cryptoTitle:"Calculateur crypto",coin:"Prix d'une unité crypto en USD",quantity:"Quantité",
+cryptoWarning:"Le prix est celui que vous saisissez, pas un cours crypto en direct.",
+demoTitle:"Laboratoire de simulation",virtual:"ARGENT VIRTUEL UNIQUEMENT",
+demoInfo:"Choisissez un solde pour apprendre à gérer un budget simulé. Aucun dépôt ou retrait réel.",
+currency:"Devise de démo",balance:"Solde initial",balanceLabel:"Solde actuel",
+change:"Montant à simuler",gain:"Simuler un gain",loss:"Simuler une perte",
+reset:"Réinitialiser la démo",demoWarning:"Exercice mathématique, pas une transaction de marché.",
+riskTitle:"Calculateur de risque",capital:"Capital virtuel",riskPercent:"Risque théorique (%)",
+riskHelp:"Estime la part du capital correspondant au pourcentage choisi. Ce n'est pas une garantie de perte maximale.",
+learnTitle:"Centre de formation",cryptoLesson:"Découvrez la volatilité, les prix, les frais de réseau, les portefeuilles et la protection des clés privées.",
+forexLesson:"Un pip mesure une variation de prix. Sa valeur dépend de la paire, du volume et de la devise du compte.",
+cfdLesson:"Les CFD permettent de spéculer sur les prix sans posséder l'actif. L'effet de levier augmente l'exposition et le risque.",
+p2pLesson:"Calculez l'écart entre achat et vente, les frais et le montant reçu. Vérifiez le paiement dans votre compte.",
+securityLesson:"Utilisez un mot de passe unique, activez la 2FA, conservez les codes de récupération en sécurité et ne partagez jamais les codes.",
+scamTitle:"Éviter les arnaques",scamLesson:"Méfiez-vous des profits garantis. Vérifiez le domaine, ne partagez pas vos clés privées et évitez les applications suspectes.",
+important:"Important :",educationNotice:"Cette formation n'est pas un conseil financier. La crypto, le Forex et les CFD comportent des risques de pertes importantes. La démo ne prédit pas les résultats réels.",
+accessTitle:"Accès et inscription",accessInfo:"Le projet prévoit un paiement unique de 100 HTG par NatCash ou MonCash, ou 1 USDT. Wise peut être proposé pour un paiement en USD selon les conditions du service.",
+accessWarning:"Les paiements, l'inscription et le KYC ne sont pas actifs dans cette démonstration. N'envoyez ni argent ni pièce d'identité sur cette page.",
+privacy:"Les comptes, paiements et vérifications d'identité nécessitent des services sécurisés et une collecte minimale des données.",
+footer:"Apprendre. Calculer. Pratiquer. Se protéger."
+},
+en:{
+home:"Home",calc:"Calculator",demo:"Demo",learn:"Learning",
+welcome:"Learn finance. Calculate better. Practice without real money.",
+intro:"Explore crypto, Forex, CFDs and P2P with calculation tools and a virtual balance.",
+start:"Start learning",disclaimer:"Educational platform. The demo uses no real money.",
+calcTitle:"Gourde and dollar calculator",rateHelp:"Enter an exchange rate. The preset value is an example, not a live market rate.",
+rate:"HTG per 1 USD",amount:"Amount",direction:"Convert from",calculate:"Calculate",
+rateWarning:"Check the current rate before making financial decisions.",
+cryptoTitle:"Crypto calculator",coin:"Price per crypto unit in USD",quantity:"Quantity",
+cryptoWarning:"This is the price you enter, not a live crypto price.",
+demoTitle:"Virtual demo lab",virtual:"VIRTUAL MONEY ONLY",
+demoInfo:"Choose a balance to practise managing a simulated budget. No real deposits or withdrawals.",
+currency:"Demo currency",balance:"Starting balance",balanceLabel:"Current balance",
+change:"Amount to simulate",gain:"Simulate a gain",loss:"Simulate a loss",
+reset:"Reset demo",demoWarning:"This is a maths exercise, not a market transaction.",
+riskTitle:"Risk calculator",capital:"Virtual capital",riskPercent:"Theoretical risk (%)",
+riskHelp:"Estimates the capital amount represented by your percentage. It does not guarantee a maximum real loss.",
+learnTitle:"Learning centre",cryptoLesson:"Learn about volatility, prices, network fees, digital wallets and private-key protection.",
+forexLesson:"A pip measures a price change. Its value depends on the currency pair, trade size and account currency.",
+cfdLesson:"CFDs let you speculate on price movements without owning the asset. Leverage increases exposure and risk.",
+p2pLesson:"Calculate buy/sell differences, fees and proceeds. Verify payments in your own account.",
+securityLesson:"Use a unique password, enable 2FA, store recovery codes securely and never share verification codes.",
+scamTitle:"Avoid scams",scamLesson:"Beware of guaranteed profits. Check domains, protect private keys and avoid suspicious app downloads.",
+important:"Important:",educationNotice:"This is not financial advice. Crypto, Forex and CFDs can cause substantial losses. Demo results do not predict real outcomes.",
+accessTitle:"Access and registration",accessInfo:"The planned one-time access fee is 100 HTG via NatCash or MonCash, or 1 USDT. Wise may be offered for USD payments subject to service terms.",
+accessWarning:"Payments, registration and KYC are not active in this demo. Do not send money or identity documents here.",
+privacy:"Accounts, payments and identity checks require secure services and minimal collection of personal data.",
+footer:"Learn. Calculate. Practise. Protect yourself."
+},
+es:{
+home:"Inicio",calc:"Calculadora",demo:"Demo",learn:"Formación",
+welcome:"Aprende finanzas. Calcula mejor. Practica sin dinero real.",
+intro:"Descubre criptomonedas, Forex, CFD y P2P con herramientas de cálculo y saldo virtual.",
+start:"Comenzar",disclaimer:"Plataforma educativa. La demo no utiliza dinero real.",
+calcTitle:"Calculadora de gourdes y dólares",rateHelp:"Introduce un tipo de cambio. El valor inicial es un ejemplo, no una cotización en vivo.",
+rate:"HTG por 1 USD",amount:"Cantidad",direction:"Convertir desde",calculate:"Calcular",
+rateWarning:"Comprueba el tipo de cambio actual antes de tomar decisiones financieras.",
+cryptoTitle:"Calculadora cripto",coin:"Precio de una unidad cripto en USD",quantity:"Cantidad",
+cryptoWarning:"Es el precio que introduces, no una cotización cripto en vivo.",
+demoTitle:"Laboratorio de simulación",virtual:"SOLO DINERO VIRTUAL",
+demoInfo:"Elige un saldo para practicar la gestión de un presupuesto simulado. No hay depósitos ni retiros reales.",
+currency:"Moneda demo",balance:"Saldo inicial",balanceLabel:"Saldo actual",
+change:"Cantidad para simular",gain:"Simular una ganancia",loss:"Simular una pérdida",
+reset:"Reiniciar demo",demoWarning:"Es un ejercicio matemático, no una transacción de mercado.",
+riskTitle:"Calculadora de riesgo",capital:"Capital virtual",riskPercent:"Riesgo teórico (%)",
+riskHelp:"Estima el capital correspondiente al porcentaje elegido. No garantiza un límite de pérdida real.",
+learnTitle:"Centro de formación",cryptoLesson:"Aprende sobre volatilidad, precios, comisiones de red, monederos y protección de claves privadas.",
+forexLesson:"Un pip mide un cambio de precio. Su valor depende del par, el volumen y la moneda de la cuenta.",
+cfdLesson:"Los CFD permiten especular sobre precios sin poseer el activo. El apalancamiento aumenta la exposición y el riesgo.",
+p2pLesson:"Calcula diferencias entre compra y venta, comisiones y el importe recibido. Verifica los pagos en tu cuenta.",
+securityLesson:"Usa una contraseña única, activa 2FA, guarda los códigos de recuperación de forma segura y no compartas códigos.",
+scamTitle:"Evitar estafas",scamLesson:"Desconfía de beneficios garantizados. Comprueba los domin
